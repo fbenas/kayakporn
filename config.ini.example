@@ -1,0 +1,11 @@
+[database]
+host        = localhost
+user        = user
+password    = password
+database    = database
+
+[facebook]
+appId 		=
+appSecret 	= 
+accessToken 	= 
+groupId 	= 
