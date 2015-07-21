@@ -1,0 +1,60 @@
+{
+    "posts": [
+        {
+            "name": "id",
+            "param": "VARCHAR(50) NOT NULL PRIMARY KEY"
+        },
+        {
+            "name": "caption",
+            "type": "VARCHAR(100)"
+        },
+        {
+            "name": "created_time",
+            "type": "DATETIME"
+        },
+        {
+            "name": "description",
+            "type": "VARCHAR(1000)"
+        },
+        {
+            "name": "`from`",
+            "type": "VARCHAR(100)"
+        },
+        {
+            "name": "icon",
+            "type": "VARCHAR(100)"
+        },
+        {
+            "name": "link",
+            "type": "VARCHAR(100)"
+        },
+        {
+            "name": "name",
+            "type": "VARCHAR(100)"
+        },
+        {
+            "name": "message",
+            "type": "VARCHAR(1000)"
+        },
+        {
+            "name": "message_tags",
+            "type": "VARCHAR(50)"
+        },
+        {
+            "name": "picture",
+            "type": "VARCHAR(100)"
+        },
+        {
+            "name": "source",
+            "type": "VARCHAR(100)"
+        },
+        {
+            "name": "type",
+            "type": "VARCHAR(20)"
+        },
+        {
+            "name": "updated_time",
+            "type": "DATETIME"
+        }
+    ]
+}
