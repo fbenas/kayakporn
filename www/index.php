@@ -17,17 +17,17 @@ try {
     $result     = $db->query(
         "SELECT source 
          FROM   posts 
-         WHERE  source IS NOT NULL
-         LIMIT  3
-        ");
+         WHERE  source IS NOT NULL"
+    );
 
+    $count = 1;
     while ($row = $result->fetch()) {
         $url = $row['source'];
 
         if (strpos($url, "youtube")) {
-            getYoutubeHtml($url);
+            echo getYoutubeHtml($count, $url);
         } elseif (stros($url, 'vimeo')) {
-            getVimeoHtml($url);
+            echo getVimeoHtml($count, $url);
         } else {
             continue;
         }
@@ -39,10 +39,12 @@ try {
     exit;
 }
 
-function getYoutubeHtml($url) {
-    echo "getYoutubeHtml";
+function getYoutubeHtml($id, $url) {
+    $iframe = 
+    '<iframe id="ytplayer" type="text/html" width="720" height="405" src=' . $url . ' controls=0&enablejsapi=1&autohide=1" frameborder="0" allowfullscreen>';
+    getHtml();
 }
 
-function getVimeoHtml($url) {
-    echo "getVimeoHtml";
+function getVimeoHtml($id, $url) {
+    return getHtml();
 }
