@@ -1,20 +1,20 @@
 <?php
 
-require 'vendor/autoload.php';
-require 'PDO_Database.php';
-require 'Logger.php';
+require '../vendor/autoload.php';
+require '../lib/PDO_Database.php';
+require '../lib/Logger.php';
 
 try {
 
     // INIT
-    $config     = parse_ini_file('config.ini', true);
+    $config     = parse_ini_file('../config/config.ini', true);
 
     $dConf      = (object) $config['database'];
     $fConf      = (object) $config['facebook'];
     $log        = new Logger();
     $db         = new PDO_Database($dConf->user, $dConf->password, $dConf->database, $dConf->host);
 
-    $tables     = json_decode(file_get_contents('tables.json'), true);
+    $tables     = json_decode(file_get_contents('../config/tables.json'), true);
 
     $existing   = [];
     $surplus    = [];
@@ -69,7 +69,6 @@ try {
             // Check this isn't a primary key issue
             if ($e->errorInfo[1] == 1062) {
                 // Just a duplicate so log and continue
-                var_dump($post->items['id']);die();
                 $log->log('Found Duplicate for `' . $post['id'] . '`');
             } else {
                 throw $e;
