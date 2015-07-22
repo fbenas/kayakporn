@@ -1,6 +1,5 @@
 <?php
 
-require '../vendor/autoload.php';
 require '../lib/PDO_Database.php';
 require '../lib/Logger.php';
 
