@@ -1,0 +1,12 @@
+[database]
+host        = localhost
+user        = root
+password    = god3r
+database    = phil
+
+[facebook]
+appId = '929836713760289';
+appSecret = 'fa8305fcb3a7c72c594fedb2102a0727';
+accessToken = 
+'CAANNrnsF1iEBAGTyJ7ZCmA1bj4SfNx9ZCTYLQWFkMfSHvApU7P8NMJPlPhkbjwnUheVqIVbZAgGvcYVv7lm085sxnmLaZABGcIQzmEGwdJ0yD9rn4Wot3ejoVSVPPfJuQrZCa6c4gOZB2l54FFHcBgLwTIw6dXqD3tN6Xmhg0CtkAlrwZBxonE906P5EqQqXJmG9IDMqgmefVyDVZCXuZABZAe';
+groupId = '311351108885061';

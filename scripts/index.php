@@ -60,7 +60,7 @@ try {
 
     // Get the Facebook\GraphNodes\GraphUser object for the current user.
     // If you provided a 'default_access_token', the '{access-token}' is optional.
-    $response = $fb->get($fConf->groupId . '/feed?limit=999    &fields=id,caption,created_time,description,from,icon,link,name,message,message_tags,picture,source,type,updated_time');
+    $response = $fb->get($fConf->groupId . '/feed?limit=9999&fields=id,caption,created_time,description,from,icon,link,name,message,message_tags,picture,source,type,updated_time');
     $posts = $response->getGraphEdge();
     foreach ($posts as $post) {
         try {
