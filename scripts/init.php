@@ -68,6 +68,8 @@ try {
         $params = (array)$post;
 	    $params = $params[key($params)];
 
+	    // Tweak the url
+        $url = (isset($params['source']) ? $params['source'] : null);
         $site = "other";
         if (strpos($url, "youtube") !== false) {
             $site = "youtube";
