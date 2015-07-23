@@ -15,38 +15,22 @@ try {
     $existing   = [];
     $surplus    = [];
     $result     = $db->query(
-        "SELECT source, picture
+        "SELECT uid, source, picture, site
          FROM   posts
          WHERE  source IS NOT NULL
-	LIMIT 3"
+	     LIMIT 100"
     );
-    $count = 1;
     echo '<html>';
     echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>';
-    echo "<script>
-	$(document).ready(function() {
-	    $('img').click(function() {
-		id = this.id;
-		$.ajax({
-		    url: 'api.php?' + id,
-		}).done(function(data) {
-		   $('#div-' + id).empty();
-		   $('#div-' + id).append(data);
-		});
-	    });
-	});
-	</script>";
+    echo '<script src="../js/index.js"></script>';
+    echo '<link href="../css/index.css" type="text/css" rel="stylesheet"/>';
 
     echo '<body>';
     while ($row = $result->fetch()) {
         $url = $row['source'];
-
-        if (strpos($url, "youtube")) {
-            getYoutubeHtml($count, $url, $row['picture']);
-        } elseif (strpos($url, 'vimeo')) {
-            getVimeoHtml($count, $url, $row['picture']);
+        if ($row['site'] != 'other') {
+            getVimeoHtml($row['uid'], $url, $row['picture']);
         }
-	$count++;
     }
     echo '</body></html>';
 } catch (PDOException $e) {
@@ -55,16 +39,9 @@ try {
     exit;
 }
 
-function getYoutubeHtml($id, $url, $img) {
-echo '<div id="div-' . $id . '">';
-echo '<img id="' . $id . '" src="' . $img . '" height="200" width="300">';
-//echo '<iframe id="' . $id . '" type="text/html" width="300" height="200" src="' . $url . '?controls=0&enablejsapi=1&autohide=1&showinfo=0" frameborder="0" allowfullscreen autoplay="0"></iframe>';
-echo '</div>';
-}
 
 function getVimeoHtml($id, $url, $img) {
-echo '<div id="div-' . $id . '">';
-echo '<img id="' . $id . '" src="' . $img . '" height="200" width="300">';
-//echo '<iframe id="' . $id . '" src="' . $url . '?autoplay=0&badge=0&byline=0&title=0" height="200" width="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
-echo '</div>';
+    echo '<div id="div-' . $id . '">';
+    echo '<img title="' . $url . '" id="' . $id . '" src="' . $img . '" height="200" width="300">';
+    echo '</div>';
 }

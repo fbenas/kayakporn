@@ -1,0 +1,9 @@
+/* Used for hiding stuff */
+.hidden {
+    display: none;
+}
+
+/* inline divs  */
+div {
+    float: left;
+}

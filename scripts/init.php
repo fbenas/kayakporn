@@ -1,4 +1,4 @@
-w<?php
+<?php
 
 require '../vendor/autoload.php';
 require '../lib/PDO_Database.php';
@@ -62,14 +62,22 @@ try {
     // If you provided a 'default_access_token', the '{access-token}' is optional.
     $response = $fb->get($fConf->groupId . '/feed?limit=9999&fields=id,caption,created_time,description,from,icon,link,name,message,message_tags,picture,source,type,updated_time');
     $posts = $response->getGraphEdge();
+    $count = 1;
     foreach ($posts as $post) {
         // Grab the inner array
         $params = (array)$post;
-	$params = $params[key($params)];
-	// Tweak the url
-	if (isset($params['source']) && strpos($params['source'], '?') !== false) {
-	    $params['source'] = explode('?', $params['source'])[0];
-	}
+	    $params = $params[key($params)];
+
+        $site = "other";
+        if (strpos($url, "youtube") !== false) {
+            $site = "youtube";
+        } elseif (strpos($url, 'vimeo') !== false) {
+            $site = "vimeo";
+        }
+        // Remove any get params
+        $url = explode('?', $url)[0];
+        $params['source'] = $url;
+        $params['site'] = $site;
         try {
             $db->insertFromFb('posts', $params);
         } catch (PDOException $e) {

@@ -1,8 +1,16 @@
 {
     "posts": [
         {
+            "name": "uid",
+            "param": "INT NOT NULL AUTO_INCREMENT PRIMARY KEY"
+        },
+        {
+            "name": "site",
+            "param": "VARCHAR(10) NOT NULL"
+        },
+        {
             "name": "id",
-            "param": "VARCHAR(50) NOT NULL PRIMARY KEY"
+            "param": "VARCHAR(50) NOT NULL"
         },
         {
             "name": "caption",
