@@ -42,7 +42,7 @@
         },
         {
             "name": "picture",
-            "type": "VARCHAR(100)"
+            "type": "VARCHAR(200)"
         },
         {
             "name": "source",

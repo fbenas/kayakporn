@@ -55,9 +55,6 @@ class PDO_Database
      */
     public function insertFromFb($table, $params)
     {
-        // Grab the inner array
-        $params = $params[key($params)];
-
         // For values map each elem so we can handle dates/graphnodes properly
         $values = array_map(
             function ($elem) {

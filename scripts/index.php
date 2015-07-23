@@ -1,4 +1,4 @@
-<?php
+w<?php
 
 require '../vendor/autoload.php';
 require '../lib/PDO_Database.php';
@@ -63,13 +63,20 @@ try {
     $response = $fb->get($fConf->groupId . '/feed?limit=9999&fields=id,caption,created_time,description,from,icon,link,name,message,message_tags,picture,source,type,updated_time');
     $posts = $response->getGraphEdge();
     foreach ($posts as $post) {
+        // Grab the inner array
+        $params = (array)$post;
+	$params = $params[key($params)];
+	// Tweak the url
+	if (isset($params['source']) && strpos($params['source'], '?') !== false) {
+	    $params['source'] = explode('?', $params['source'])[0];
+	}
         try {
-            $db->insertFromFb('posts', (array)$post);
+            $db->insertFromFb('posts', $params);
         } catch (PDOException $e) {
             // Check this isn't a primary key issue
             if ($e->errorInfo[1] == 1062) {
                 // Just a duplicate so log and continue
-                $log->log('Found Duplicate for `' . $post['id'] . '`');
+                $log->log('Found Duplicate for `' . $params['id'] . '`');
             } else {
                 throw $e;
             }
